@@ -1,0 +1,33 @@
+<div class="orders-container">
+  <h2>All Orders</h2>
+
+  <div class="navigation-container">
+    <li><a routerLink="/user/home">Home Page</a></li>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date Placed</th>
+        <th>Order Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.datePlaced | date : 'medium' }}</td>
+        <td>{{ order.orderStatus }}</td>
+        <td>
+          <button (click)="viewOrder(order.orderId)">View</button>
+          <button
+            *ngIf="order.orderStatus === 'Processing'"
+            (click)="cancelOrder(order.orderId)"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+</div>

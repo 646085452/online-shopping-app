@@ -1,0 +1,14 @@
+<div class="product-detail-container" *ngIf="product">
+  <h2>Product Detail</h2>
+  <p><strong>Name:</strong> {{ product.name }}</p>
+  <p><strong>Description:</strong> {{ product.description }}</p>
+  <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+  <p><strong>Retail Price:</strong> {{ product.retailPrice | currency }}</p>
+  <p>
+    <strong>Wholesale Price:</strong> {{ product.wholesalePrice | currency }}
+  </p>
+</div>
+
+<li><a routerLink="/admin/product">Back to Product Management</a></li>
+
+<p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>

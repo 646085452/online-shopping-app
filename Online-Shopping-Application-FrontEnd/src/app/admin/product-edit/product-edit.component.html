@@ -1,0 +1,82 @@
+<div class="product-edit-container">
+  <h2>Edit Product</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="saveChanges()">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" />
+      <div
+        *ngIf="
+          productForm.get('name')?.invalid && productForm.get('name')?.touched
+        "
+        class="error"
+      >
+        Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <input id="description" formControlName="description" />
+      <div
+        *ngIf="
+          productForm.get('description')?.invalid &&
+          productForm.get('description')?.touched
+        "
+        class="error"
+      >
+        Description is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="wholesalePrice">Wholesale Price</label>
+      <input id="wholesalePrice" formControlName="wholesalePrice" />
+      <div
+        *ngIf="
+          productForm.get('wholesalePrice')?.invalid &&
+          productForm.get('wholesalePrice')?.touched
+        "
+        class="error"
+      >
+        Wholesale price must be a valid non-negative number.
+      </div>
+    </div>
+
+    <div>
+      <label for="retailPrice">Retail Price</label>
+      <input id="retailPrice" formControlName="retailPrice" />
+      <div
+        *ngIf="
+          productForm.get('retailPrice')?.invalid &&
+          productForm.get('retailPrice')?.touched
+        "
+        class="error"
+      >
+        Retail price must be a valid non-negative number.
+      </div>
+    </div>
+
+    <div>
+      <label for="quantity">Quantity</label>
+      <input id="quantity" formControlName="quantity" />
+      <div
+        *ngIf="
+          productForm.get('quantity')?.invalid &&
+          productForm.get('quantity')?.touched
+        "
+        class="error"
+      >
+        Quantity must be a valid non-negative integer.
+      </div>
+    </div>
+
+    <button type="submit">Save Changes</button>
+    <button type="button" (click)="disregardChanges()">
+      Disregard Changes
+    </button>
+  </form>
+
+  <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+  <p *ngIf="successMsg" class="success">{{ successMsg }}</p>
+</div>

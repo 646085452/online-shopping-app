@@ -1,0 +1,67 @@
+/* Container for the order details */
+.order-detail {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f5f5f5;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Alternating row colors for better readability */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Section headings */
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  margin-top: 20px;
+}
+
+/* Button Styling */
+button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button + button {
+  margin-left: 10px;
+}

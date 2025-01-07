@@ -1,0 +1,51 @@
+<div class="order-container">
+  <h2>Admin Orders</h2>
+
+  <div class="navigation-container">
+    <li><a routerLink="/admin/home">Home Page</a></li>
+  </div>
+
+  <div class="filter-buttons">
+    <button (click)="changeFilter('all')">All</button>
+    <button (click)="changeFilter('processing')">Processing</button>
+    <button (click)="changeFilter('canceled')">Canceled</button>
+    <button (click)="changeFilter('completed')">Completed</button>
+  </div>
+
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+  <table *ngIf="filteredOrders.length > 0">
+    <thead>
+      <tr>
+        <th>Date Placed</th>
+        <th>Status</th>
+        <th>User ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of filteredOrders">
+        <td>{{ order.datePlaced | date : 'medium' }}</td>
+        <td>{{ order.orderStatus }}</td>
+        <td>{{ order.userId }}</td>
+        <td>
+          <button (click)="viewOrder(order.orderId)">View</button>
+          <button
+            *ngIf="order.orderStatus === 'Processing'"
+            (click)="completeOrder(order.orderId)"
+          >
+            Complete
+          </button>
+          <button
+            *ngIf="order.orderStatus === 'Processing'"
+            (click)="cancelOrder(order.orderId)"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="filteredOrders.length === 0 && !errorMsg">No orders to display.</p>
+</div>

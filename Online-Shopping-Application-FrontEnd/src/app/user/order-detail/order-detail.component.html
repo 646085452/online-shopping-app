@@ -1,0 +1,33 @@
+<div *ngIf="order" class="order-detail">
+  <h2>Order Detail</h2>
+  <p><strong>Date Placed:</strong> {{ order.datePlaced | date : 'medium' }}</p>
+  <p><strong>Status:</strong> {{ order.orderStatus }}</p>
+
+  <h3>Items:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Purchased Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of order.orderItems">
+        <td>{{ item.productName }}</td>
+        <td>{{ item.purchasedPrice | currency }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>
+          <button (click)="viewProduct(item.productId)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="navigation-container">
+  <li><a routerLink="/user/orders">Back to Orders Page</a></li>
+</div>
+
+<p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>

@@ -1,0 +1,36 @@
+<div class="watchlist-container">
+  <h2>My Watchlist</h2>
+
+  <div class="navigation-container">
+    <li><a routerLink="/user/home">Home Page</a></li>
+  </div>
+  <div class="navigation-container">
+    <li><a routerLink="/user/product">Back to Product Page</a></li>
+  </div>
+
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+  <table *ngIf="watchlist.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Retail Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of watchlist">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.retailPrice | currency }}</td>
+        <td>
+          <button (click)="addToCart(product.productId)">Add to Cart</button>
+          <button (click)="removeFromWatchlist(product.productId)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

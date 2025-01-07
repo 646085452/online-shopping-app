@@ -1,0 +1,28 @@
+<div class="product-container">
+  <h2>All Products</h2>
+  <li><a routerLink="/admin/home">Home Page</a></li>
+
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+  <table *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <button (click)="viewProduct(product.productId)">View</button>
+          <button (click)="editProduct(product.productId)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="addNewProduct()">Add New Product</button>
+</div>

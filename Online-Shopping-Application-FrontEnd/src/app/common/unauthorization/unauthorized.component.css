@@ -1,0 +1,16 @@
+.unauthorized-container {
+  margin: 50px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  color: #ff0000; /* Red color for emphasis */
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  color: #333;
+}

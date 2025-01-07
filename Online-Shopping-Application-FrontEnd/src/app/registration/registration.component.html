@@ -1,0 +1,100 @@
+<div class="registration-form">
+  <h2>Register</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        [ngClass]="{
+          'is-invalid':
+            registrationForm.get('username')?.invalid &&
+            registrationForm.get('username')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registrationForm.get('username')?.invalid &&
+          registrationForm.get('username')?.touched
+        "
+        class="error"
+      >
+        Username is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            registrationForm.get('email')?.invalid &&
+            registrationForm.get('email')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+        registrationForm.get('email')?.errors?.['required'] &&
+        registrationForm.get('email')?.touched
+      "
+        class="error"
+      >
+        Email is required.
+      </div>
+      <div
+        *ngIf="
+        registrationForm.get('email')?.errors?.['email'] &&
+        registrationForm.get('email')?.touched
+      "
+        class="error"
+      >
+        Enter a valid email address.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid':
+            registrationForm.get('password')?.invalid &&
+            registrationForm.get('password')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+        registrationForm.get('password')?.errors?.['required'] &&
+        registrationForm.get('password')?.touched
+      "
+        class="error"
+      >
+        Password is required.
+      </div>
+      <div
+        *ngIf="
+        registrationForm.get('password')?.errors?.['minlength'] &&
+        registrationForm.get('password')?.touched
+      "
+        class="error"
+      >
+        Password must be at least 6 characters long.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="registrationForm.invalid">
+      Register
+    </button>
+  </form>
+
+  <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+  <p *ngIf="successMsg" class="success">{{ successMsg }}</p>
+
+  <button class="back-button" (click)="navigateToLogin()">Back to Login</button>
+</div>

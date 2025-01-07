@@ -1,0 +1,120 @@
+<div class="admin-home-container">
+  <!-- Sign Out Button -->
+  <div class="signout-container">
+    <button (click)="logout()">Sign Out</button>
+  </div>
+
+  <!-- Welcome Header -->
+  <header>
+    <h1>Welcome to Admin Seller Dashboard</h1>
+  </header>
+
+  <!-- Navigation Links -->
+  <nav>
+    <ul class="navigation">
+      <li><a routerLink="/admin/product">Product Management</a></li>
+      <li><a routerLink="/admin/orders">Order Management</a></li>
+    </ul>
+  </nav>
+
+  <!-- Action Buttons and Tables -->
+  <div class="actions">
+    <!-- Profit Products -->
+    <button (click)="toggleProfitProducts()">
+      {{
+        showProfitProducts
+          ? 'Hide Top 3 Products That Bring Most Profit'
+          : 'Show Top 3 Products That Bring Most Profit'
+      }}
+    </button>
+    <div class="product-table" *ngIf="showProfitProducts">
+      <h3>Top 3 Products That Bring Most Profit</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Retail Price</th>
+            <th>Wholesale Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of profitProducts">
+            <td>{{ product.name }}</td>
+            <td>{{ product.retailPrice | currency }}</td>
+            <td>{{ product.wholesalePrice | currency }}</td>
+            <td>
+              <a (click)="navigateToProduct(product.productId)">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Popular Products -->
+    <button (click)="togglePopularProducts()">
+      {{
+        showPopularProducts
+          ? 'Hide Top 3 Most Popular Sold Products'
+          : 'Show Top 3 Most Popular Sold Products'
+      }}
+    </button>
+    <div class="product-table" *ngIf="showPopularProducts">
+      <h3>Top 3 Most Popular Sold Products</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Retail Price</th>
+            <th>Wholesale Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of popularProducts">
+            <td>{{ product.name }}</td>
+            <td>{{ product.retailPrice | currency }}</td>
+            <td>{{ product.wholesalePrice | currency }}</td>
+            <td>
+              <a (click)="navigateToProduct(product.productId)">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total Sold Products -->
+    <button (click)="toggleTotalSoldProducts()">
+      {{
+        showTotalSoldProducts
+          ? 'Hide Total Number of Successfully Sold Items'
+          : 'Show Total Number of Successfully Sold Items'
+      }}
+    </button>
+    <div class="product-table" *ngIf="showTotalSoldProducts">
+      <h3>Total Number of Successfully Sold Items</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Retail Price</th>
+            <th>Wholesale Price</th>
+            <th>Total Sold Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of totalSoldProducts">
+            <td>{{ product.name }}</td>
+            <td>{{ product.retailPrice | currency }}</td>
+            <td>{{ product.wholesalePrice | currency }}</td>
+            <td>{{ product.totalSoldAmount }}</td>
+            <td>
+              <a (click)="navigateToProduct(product.productId)">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

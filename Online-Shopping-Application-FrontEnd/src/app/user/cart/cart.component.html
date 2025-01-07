@@ -1,0 +1,38 @@
+<div class="cart-container">
+  <h2>Shopping Cart</h2>
+
+  <div class="navigation-container">
+    <li><a routerLink="/user/home">Home Page</a></li>
+  </div>
+
+  <div class="navigation-container">
+    <li><a routerLink="/user/product">Back to Product Page</a></li>
+  </div>
+
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+  <table *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ cart[product.productId] }}</td>
+        <td>
+          <button (click)="addOne(product.productId)">Add One</button>
+          <button (click)="deleteOne(product.productId)">Delete One</button>
+          <button (click)="deleteAll(product.productId)">Delete All</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button *ngIf="products.length > 0" (click)="placeOrder()">
+    Place Order
+  </button>
+</div>

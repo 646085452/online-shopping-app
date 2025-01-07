@@ -1,0 +1,31 @@
+<div class="order-detail-container" *ngIf="order">
+  <h2>Order Detail</h2>
+  <p><strong>Date Placed:</strong> {{ order.datePlaced | date : 'medium' }}</p>
+  <p><strong>Status:</strong> {{ order.orderStatus }}</p>
+  <p><strong>User ID:</strong> {{ order.userId }}</p>
+
+  <h3>Items:</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Purchased Price</th>
+        <th>Wholesale Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of order.orderItems">
+        <td>{{ item.productName }}</td>
+        <td>{{ item.purchasedPrice | currency }}</td>
+        <td>{{ item.wholesalePrice | currency }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+      <div class="navigation-container">
+        <li><a routerLink="/admin/orders">Back to Order Management</a></li>
+      </div>
+    </tbody>
+  </table>
+</div>
+
+<p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>

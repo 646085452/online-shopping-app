@@ -1,0 +1,40 @@
+<div class="product-container">
+  <h2>In-stock Products</h2>
+
+  <div class="navigation-container">
+    <li><a routerLink="/user/home">Home Page</a></li>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a routerLink="/user/cart">Shopping Cart</a></li>
+      <li><a routerLink="/user/watchlist">Watchlist</a></li>
+    </ul>
+  </nav>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Retail Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.retailPrice | currency }}</td>
+        <td>
+          <button (click)="addToCart(product.productId)">Add to Cart</button>
+          <button (click)="addToWatchlist(product.productId)">
+            Add to Watchlist
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+</div>

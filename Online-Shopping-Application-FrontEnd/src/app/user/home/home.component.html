@@ -1,0 +1,92 @@
+<div class="user-home-container">
+  <!-- Sign Out Button -->
+  <div class="signout-container">
+    <button (click)="logout()">Sign Out</button>
+  </div>
+
+  <header>
+    <h1>Welcome to Your Dashboard</h1>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content">
+    <nav>
+      <ul class="navigation">
+        <li><a routerLink="/user/orders">All Orders</a></li>
+        <li><a routerLink="/user/product">Browse In-stock Products</a></li>
+        <li><a routerLink="/user/cart">Shopping Cart</a></li>
+        <li><a routerLink="/user/watchlist">Watchlist</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <!-- Frequent Products -->
+      <button (click)="toggleFrequentProducts()">
+        {{
+          showFrequent
+            ? 'Hide Top 3 Most Frequently Purchased Items'
+            : 'Show Top 3 Most Frequently Purchased Items'
+        }}
+      </button>
+      <div class="product-table" *ngIf="showFrequent">
+        <h3>Top 3 Most Frequently Purchased Products</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Retail Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of frequentProducts">
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.retailPrice | currency }}</td>
+              <td>
+                <a (click)="navigateToProduct(product.productId)"
+                  >View Details</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Recent Products -->
+      <button (click)="toggleRecentProducts()">
+        {{
+          showRecent
+            ? 'Hide Top 3 Most Recently Purchased Items'
+            : 'Show Top 3 Most Recently Purchased Items'
+        }}
+      </button>
+      <div class="product-table" *ngIf="showRecent">
+        <h3>Top 3 Most Recently Purchased Products</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Retail Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of recentProducts">
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.retailPrice | currency }}</td>
+              <td>
+                <a (click)="navigateToProduct(product.productId)"
+                  >View Details</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
